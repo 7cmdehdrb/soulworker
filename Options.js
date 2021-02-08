@@ -19,24 +19,26 @@ export const OptionButton = (props) => {
       style={state == 0 ? Styles.Option_Btn : Styles.Option_Btn_Selected}
       activeOpacity={1}
       onPress={() => {
-        if (state == 0) {
-          array[id] = 1;
-          setState(1);
-          props.setData({
-            a: array[0],
-            b: array[1],
-            c: array[2],
-            d: array[3],
-          });
-        } else {
-          array[id] = 0;
-          setState(0);
-          props.setData({
-            a: array[0],
-            b: array[1],
-            c: array[2],
-            d: array[3],
-          });
+        if (props.opt != 0) {
+          if (state == 0) {
+            array[id] = 1;
+            setState(1);
+            props.setData({
+              a: array[0],
+              b: array[1],
+              c: array[2],
+              d: array[3],
+            });
+          } else {
+            array[id] = 0;
+            setState(0);
+            props.setData({
+              a: array[0],
+              b: array[1],
+              c: array[2],
+              d: array[3],
+            });
+          }
         }
       }}
     >

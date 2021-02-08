@@ -19,16 +19,25 @@ function Converter() {
   const [converterCnt, setConverterCnt] = useState(0);
 
   const [itemCode, setItemCode] = useState("vs_hr_wp");
+  const item = DB[`${itemCode}`];
 
-  const [opt0, setOpt0] = useState(0);
-  const [opt1, setOpt1] = useState(0);
-  const [opt2, setOpt2] = useState(0);
-  const [opt3, setOpt3] = useState(0);
+  const [opt0, setOpt0] = useState(1);
+  const [opt1, setOpt1] = useState(2);
+  const [opt2, setOpt2] = useState(3);
+  const [opt3, setOpt3] = useState(item.available == 4 ? 4 : 0);
 
-  const [val0, setVal0] = useState(0);
-  const [val1, setVal1] = useState(0);
-  const [val2, setVal2] = useState(0);
-  const [val3, setVal3] = useState(0);
+  const [val0, setVal0] = useState(
+    getRandomInt(item.data[1][1], item.data[1][2])
+  );
+  const [val1, setVal1] = useState(
+    getRandomInt(item.data[2][1], item.data[2][2])
+  );
+  const [val2, setVal2] = useState(
+    getRandomInt(item.data[3][1], item.data[3][2])
+  );
+  const [val3, setVal3] = useState(
+    item.available == 4 ? getRandomInt(item.data[4][1], item.data[4][2]) : 0
+  );
 
   const [data, setData] = useState({
     a: 0,
@@ -36,6 +45,12 @@ function Converter() {
     c: 0,
     d: 0,
   });
+
+  let opts = cFunction(
+    item.data.length - 1,
+    item.available,
+    renewalException()
+  );
 
   function ConverterAdd() {
     return data.a + data.b + data.c + data.d;
@@ -61,15 +76,7 @@ function Converter() {
   }
 
   function startConverter() {
-    const item = DB[`${itemCode}`];
-
     const cct = ConverterAdd();
-
-    let opts = cFunction(
-      item.data.length - 1,
-      item.available,
-      renewalException()
-    );
 
     if ((0 <= cct) & (cct <= 2)) {
       if (data.a == 0) {
@@ -84,8 +91,9 @@ function Converter() {
         setOpt2(opts[2]);
         setVal2(getRandomInt(item.data[opts[2]][1], item.data[opts[2]][2]));
       }
-      if (data.d == 0) {
-        // setOpt3(getRandomInt(0, 10));
+      if (data.d == 0 && opt3) {
+        setOpt3(opts[3]);
+        setVal3(getRandomInt(item.data[opts[3]][1], item.data[opts[3]][2]));
       }
 
       // ====== //
