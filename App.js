@@ -1,9 +1,31 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import Home from "./Home";
 import Converter from "./Converter";
 
-function App() {
-  return <Converter></Converter>;
-}
+const App = createStackNavigator(
+  {
+    Home: {
+      screen: Home,
+      navigationOptions: {
+        title: "소울워커 시뮬레이터",
+      },
+    },
+    Converter: {
+      screen: Converter,
+      navigationOptions: {
+        title: "컨버터 시뮬레이터",
+      },
+    },
+  },
+  {
+    initialRouteName: "Home",
+  }
+);
 
-export default App;
+const AppContainer = createAppContainer(App);
+
+export default () => {
+  return <AppContainer></AppContainer>;
+};

@@ -6,114 +6,64 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import { Button } from "./Button";
-import { OptionButton } from "./Options";
-import Styles from "./Styles";
+import Modal from "react-native-modal";
+import OptionTable from "./Table";
+import Option from "./Options";
+import { Styles, ButtonStyles, ModalStyles } from "./Styles";
+import Selector from "./Selector";
+import { defaultState, resetState } from "./state";
 import { cFunction, getRandomInt } from "./utils";
 import DB from "./db";
+
+// IMG //
+
 import Converter_BG from "./src/converter_patt2.png";
-import Test_Image from "./src/weapon_image.png";
 import Converter_Image from "./src/converter.png";
 
 function Converter() {
-  const [converterCnt, setConverterCnt] = useState(0);
-
-  const [itemCode, setItemCode] = useState("vs_hr_wp");
-  const item = DB[`${itemCode}`];
-
-  const [opt0, setOpt0] = useState(1);
-  const [opt1, setOpt1] = useState(2);
-  const [opt2, setOpt2] = useState(3);
-  const [opt3, setOpt3] = useState(item.available == 4 ? 4 : 0);
-
-  const [val0, setVal0] = useState(
-    getRandomInt(item.data[1][1], item.data[1][2])
-  );
-  const [val1, setVal1] = useState(
-    getRandomInt(item.data[2][1], item.data[2][2])
-  );
-  const [val2, setVal2] = useState(
-    getRandomInt(item.data[3][1], item.data[3][2])
-  );
-  const [val3, setVal3] = useState(
-    item.available == 4 ? getRandomInt(item.data[4][1], item.data[4][2]) : 0
-  );
-
-  const [data, setData] = useState({
-    a: 0,
-    b: 0,
-    c: 0,
-    d: 0,
-  });
-
-  let opts = cFunction(
-    item.data.length - 1,
-    item.available,
-    renewalException()
-  );
-
-  function ConverterAdd() {
-    return data.a + data.b + data.c + data.d;
-  }
-
-  function renewalException() {
-    let exceptionData = [];
-
-    if (data.a == 1) {
-      exceptionData.push(opt0);
-    }
-    if (data.b == 1) {
-      exceptionData.push(opt1);
-    }
-    if (data.c == 1) {
-      exceptionData.push(opt2);
-    }
-    if (data.d == 1) {
-      exceptionData.push(opt3);
-    }
-
-    return exceptionData;
-  }
+  const [state, setState] = useState(defaultState);
+  const [temp, setTemp] = useState(0);
+  const [modalState, setModalState] = useState(false);
+  const [startPossible, setStartPossible] = useState(true);
 
   function startConverter() {
-    const cct = ConverterAdd();
+    let exceptionData = [];
+    let add = 1;
+    let lock_cnt = 0;
+    let j = 0;
 
-    if ((0 <= cct) & (cct <= 2)) {
-      if (data.a == 0) {
-        setOpt0(opts[0]);
-        setVal0(getRandomInt(item.data[opts[0]][1], item.data[opts[0]][2]));
+    for (let i = 0; i < 4; i++) {
+      if (defaultState.options[`opt${i + 1}`].lock == true) {
+        exceptionData.push(defaultState.options[`opt${i + 1}`].option);
       }
-      if (data.b == 0) {
-        setOpt1(opts[1]);
-        setVal1(getRandomInt(item.data[opts[1]][1], item.data[opts[1]][2]));
-      }
-      if (data.c == 0) {
-        setOpt2(opts[2]);
-        setVal2(getRandomInt(item.data[opts[2]][1], item.data[opts[2]][2]));
-      }
-      if (data.d == 0 && opt3) {
-        setOpt3(opts[3]);
-        setVal3(getRandomInt(item.data[opts[3]][1], item.data[opts[3]][2]));
-      }
+    }
 
-      // ====== //
+    const selectedOption = cFunction(
+      DB[defaultState.itemCode].data.length - 1,
+      exceptionData
+    );
 
-      switch (cct) {
-        case 0:
-          setConverterCnt(converterCnt + 1); // 0옵 묶기 = +1
-          break;
-        case 1:
-          setConverterCnt(converterCnt + 2); // 1옵 묶기 = +2
-          break;
-        case 2:
-          setConverterCnt(converterCnt + 4); // 2옵 묶기 = +2
-          break;
-        default:
-          break;
+    for (let i = 0; i < 4; i++) {
+      if (defaultState.options[`opt${i + 1}`].lock == false) {
+        defaultState.options[`opt${i + 1}`].option = selectedOption[j];
+        defaultState.options[`opt${i + 1}`].value = getRandomInt(
+          DB[defaultState.itemCode].data[selectedOption[j]][1],
+          DB[defaultState.itemCode].data[selectedOption[j]][2]
+        );
+        j++;
+      } else {
+        lock_cnt++;
+        add *= 2;
       }
+    }
+
+    defaultState.converterCnt += add;
+
+    if (lock_cnt <= 2) {
+      setState(defaultState);
+      setTemp(Math.random());
     } else {
-      // 뭔가 못하게 막는다
-      alert("옵션 고정은 한번에 2개까지 가능합니다");
+      alert("옵션 잠금은 한번에 2개까지 가능합니다");
     }
   }
 
@@ -123,11 +73,19 @@ function Converter() {
         <View style={Styles.Converter_Item}>
           <View style={Styles.Converter_Image}>
             <ImageBackground source={Converter_BG} style={Styles.bgImage}>
-              <Image source={Test_Image} style={Styles.Item_Image}></Image>
+              <Image
+                source={DB[state.itemCode].image}
+                style={Styles.Item_Image}
+              ></Image>
             </ImageBackground>
           </View>
           <View style={Styles.Converter_Name}>
-            <Text style={Styles.orange_text}>페일 애쉬스 프레그먼트</Text>
+            <Selector
+              style={Styles.orange_text}
+              value={state.itemCode}
+              setState={setState}
+              setTemp={setTemp}
+            ></Selector>
           </View>
         </View>
         <View style={Styles.Converter_Option}>
@@ -139,57 +97,98 @@ function Converter() {
               ></Image>
               <View style={Styles.Converter_Part_Converter_Count}>
                 <Text style={Styles.gray_text}>사용한 컨버터</Text>
-                <Text style={Styles.orange_text}>{converterCnt}개</Text>
+                <Text style={Styles.orange_text}>{state.converterCnt}개</Text>
               </View>
             </View>
             <View style={Styles.Converter_Part_Fix}>
-              <Button text="옵션정보 ▶"></Button>
-              <Button text="장비변경 ▶"></Button>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                style={ButtonStyles.button}
+                onPress={() => {
+                  setModalState(true);
+                }}
+              >
+                <Text style={ButtonStyles.text}>옵션보기 ▶</Text>
+              </TouchableOpacity>
+              {/*  */}
+              <TouchableOpacity
+                activeOpacity={0.8}
+                style={ButtonStyles.button}
+                onPress={() => {
+                  resetState();
+                  setState(defaultState);
+                  setTemp(Math.random());
+                }}
+              >
+                <Text style={ButtonStyles.text}>초기화</Text>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={Styles.Option_Part}>
             <View style={Styles.Option_Head}>
               <Text style={Styles.Option_Head_Text}>변경 가능 옵션</Text>
             </View>
-            <OptionButton
-              id={"0"}
-              opt={opt0}
-              val={val0}
-              code={itemCode}
-              data={data}
-              setData={setData}
-            ></OptionButton>
-            <OptionButton
-              id={"1"}
-              opt={opt1}
-              val={val1}
-              code={itemCode}
-              data={data}
-              setData={setData}
-            ></OptionButton>
-            <OptionButton
-              id={"2"}
-              opt={opt2}
-              val={val2}
-              code={itemCode}
-              data={data}
-              setData={setData}
-            ></OptionButton>
-            <OptionButton
-              id={"3"}
-              opt={opt3}
-              val={val3}
-              code={itemCode}
-              data={data}
-              setData={setData}
-            ></OptionButton>
+            <Option
+              id="opt1"
+              option={DB[state.itemCode].data[state.options.opt1.option][0]}
+              value={state.options.opt1.value}
+              temp={temp}
+              lock={state.options.opt1.lock}
+              setState={setState}
+              setTemp={setTemp}
+              disable={false}
+            ></Option>
+            <Option
+              id="opt2"
+              option={DB[state.itemCode].data[state.options.opt2.option][0]}
+              value={state.options.opt2.value}
+              temp={temp}
+              lock={state.options.opt2.lock}
+              setState={setState}
+              setTemp={setTemp}
+              disable={false}
+            ></Option>
+            <Option
+              id="opt3"
+              option={DB[state.itemCode].data[state.options.opt3.option][0]}
+              value={state.options.opt3.value}
+              temp={temp}
+              lock={state.options.opt3.lock}
+              setState={setState}
+              setTemp={setTemp}
+              disable={false}
+            ></Option>
+            <Option
+              id="opt4"
+              option={
+                DB[state.itemCode].available == 4
+                  ? DB[state.itemCode].data[state.options.opt4.option][0]
+                  : "옵션없음"
+              }
+              value={
+                DB[state.itemCode].available == 4
+                  ? state.options.opt4.value
+                  : "-"
+              }
+              temp={temp}
+              lock={state.options.opt4.lock}
+              setState={setState}
+              setTemp={setTemp}
+              disable={DB[state.itemCode].available == 4 ? false : true}
+            ></Option>
           </View>
           <View style={Styles.Start_Part}>
             <TouchableOpacity
               activeOpacity={0.8}
               style={Styles.startbutton}
               onPress={() => {
-                startConverter();
+                if (startPossible) {
+                  setStartPossible(false);
+                  startConverter();
+                  setTimeout(() => {
+                    setStartPossible(true);
+                  }, 500);
+                }
               }}
             >
               <Text style={Styles.starttext}>제련</Text>
@@ -197,6 +196,28 @@ function Converter() {
           </View>
         </View>
       </View>
+
+      <Modal
+        isVisible={modalState}
+        coverScreen={true}
+        onBackButtonPress={() => {
+          setModalState(false);
+        }}
+      >
+        <View style={ModalStyles.ModalStyle}>
+          <Text style={Styles.OptionTableHead}>옵션 정보</Text>
+          <OptionTable itemCode={state.itemCode}></OptionTable>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={Styles.OptionTableBtn}
+            onPress={() => {
+              setModalState(false);
+            }}
+          >
+            <Text style={Styles.OptionTableText}>확인</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 }

@@ -1,52 +1,33 @@
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { defaultState, resetState } from "./state";
 import { getRandomInt } from "./utils";
-import DB from "./db";
 
-export const OptionButton = (props) => {
-  const [state, setState] = useState(0); // 고정 여부
-  const code = props.code;
-  const val = props.val;
-  const id = Number(props.id);
-
-  const tempData = DB[`${code}`].data[props.opt];
-
-  let array = [props.data.a, props.data.b, props.data.c, props.data.d];
+const OptionButton = (props) => {
+  const { id, option, value, disable, lock, setState, setTemp } = props;
 
   return (
     <TouchableOpacity
-      style={state == 0 ? Styles.Option_Btn : Styles.Option_Btn_Selected}
+      style={lock == false ? Styles.Option_Btn : Styles.Option_Btn_Selected}
       activeOpacity={1}
       onPress={() => {
-        if (props.opt != 0) {
-          if (state == 0) {
-            array[id] = 1;
-            setState(1);
-            props.setData({
-              a: array[0],
-              b: array[1],
-              c: array[2],
-              d: array[3],
-            });
+        if (disable == false) {
+          if (lock == true) {
+            defaultState.options[id].lock = false;
           } else {
-            array[id] = 0;
-            setState(0);
-            props.setData({
-              a: array[0],
-              b: array[1],
-              c: array[2],
-              d: array[3],
-            });
+            defaultState.options[id].lock = true;
           }
+          setState(defaultState);
+          setTemp(Math.random());
         }
       }}
     >
       <Text style={Styles.Option_Text}>
-        {tempData[0]} : {val}
+        {option} : {value}
       </Text>
       <AntDesign
-        style={state == 0 ? Styles.Option_Icon : Styles.Option_Icon_Selected}
+        style={lock == false ? Styles.Option_Icon : Styles.Option_Icon_Selected}
         name="lock"
         size={24}
         color="black"
@@ -98,3 +79,5 @@ const Styles = StyleSheet.create({
     textShadowRadius: 10,
   },
 });
+
+export default OptionButton;

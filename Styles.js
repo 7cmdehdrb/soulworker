@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+export const Styles = StyleSheet.create({
   Converter: {
     flex: 1,
     justifyContent: "center",
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#292929",
     opacity: 70,
     width: "80%",
-    marginTop: "10%",
+    marginTop: "1%",
     paddingHorizontal: 10,
     borderRadius: 10,
   },
@@ -191,6 +191,127 @@ const styles = StyleSheet.create({
     textShadowColor: "black",
     textShadowRadius: 4,
   },
+  // ====================== //
+  OptionTableHead: {
+    fontWeight: "bold",
+    fontSize: 30,
+    marginTop: 30,
+  },
+  OptionTableBtn: {
+    width: "30%",
+    borderRadius: 10,
+    paddingVertical: 10,
+    marginVertical: 30,
+    backgroundColor: "#4a454b",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 30,
+  },
+  OptionTableText: {
+    color: "white",
+  },
 });
 
-export default styles;
+export const ButtonStyles = StyleSheet.create({
+  button: {
+    width: "90%",
+    paddingVertical: 5,
+    marginVertical: 3,
+    borderRadius: 5,
+    backgroundColor: "#fad15d",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    color: "#fff",
+    textShadowColor: "black",
+    textShadowRadius: 2,
+  },
+});
+
+export const OptionStyles = StyleSheet.create({
+  Option_Btn: {
+    flex: 1,
+    width: "90%",
+    flexDirection: "row",
+    marginVertical: 4,
+    backgroundColor: "#3b393c",
+    borderRadius: 12,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  Option_Btn_Selected: {
+    flex: 1,
+    width: "90%",
+    flexDirection: "row",
+    marginVertical: 4,
+    backgroundColor: "#2c282d",
+    borderRadius: 12,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  Option_Icon: {
+    marginRight: 10,
+    fontWeight: "bold",
+    color: "#101010",
+    textShadowColor: "black",
+    textShadowRadius: 4,
+  },
+  Option_Icon_Selected: {
+    marginRight: 10,
+    fontWeight: "bold",
+    color: "#a29eac",
+    textShadowColor: "#a29eac",
+    textShadowRadius: 4,
+  },
+  Option_Text: {
+    marginLeft: 10,
+    fontWeight: "bold",
+    color: "#a29eac",
+    textShadowColor: "black",
+    textShadowRadius: 10,
+  },
+});
+
+export const ModalStyles = StyleSheet.create({
+  ModalStyle: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
+});
+
+export const HomeStyles = StyleSheet.create({
+  Home: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
+  Home_Head: {
+    flex: 2,
+    width: "80%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    resizeMode: "contain",
+  },
+  Home_Button: {
+    flex: 1,
+    flexDirection: "row",
+    width: "80%",
+    borderRadius: 10,
+    marginVertical: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 30,
+    resizeMode: "contain",
+  },
+  Home_Text: {
+    color: "black",
+    fontSize: 25,
+    fontWeight: "bold",
+  },
+});
