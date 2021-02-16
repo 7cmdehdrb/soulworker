@@ -11,7 +11,6 @@ export default class extends React.Component {
     return (
       <View style={HomeStyles.Home}>
         <Image style={HomeStyles.Home_Head} source={SoulWorker}></Image>
-        {/* <Text>.</Text> */}
 
         <TouchableOpacity
           activeOpacity={0.8}

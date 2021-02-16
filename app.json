@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "soulworker",
-    "slug": "soulworker",
+    "name": "소울워커 시뮬레이터",
+    "slug": "soulworkerSimulator",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/soyu.png",
@@ -15,9 +15,13 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.soyu.soulworkerSimulator",
+      "buildNumber": "1.0.0"
     },
     "android": {
+      "package": "com.soyu.soulworkerSimulator",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./src/soyu.png",
         "backgroundColor": "#FFFFFF"
