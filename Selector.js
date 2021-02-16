@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { Picker } from "@react-native-community/picker";
 import { defaultState, resetState } from "./state";
-import { getRandomInt } from "./utils";
 
 const App = (props) => {
   const [selectedValue, setSelectedValue] = useState("vs_wp_hr");

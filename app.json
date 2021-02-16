@@ -2,7 +2,7 @@
   "expo": {
     "name": "소울워커 시뮬레이터",
     "slug": "soulworkerSimulator",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./src/soyu.png",
     "splash": {
