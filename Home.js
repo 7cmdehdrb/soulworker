@@ -1,12 +1,19 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { SimpleLineIcons } from "@expo/vector-icons";
+import {
+  Ionicons,
+  SimpleLineIcons,
+  MaterialCommunityIcons,
+  AntDesign,
+} from "@expo/vector-icons";
 import { HomeStyles } from "./Styles";
 import SoulWorker from "./src/soulworker.png";
 
 export default class extends React.Component {
+  state = {
+    modalVisible: false,
+  };
+
   render() {
     return (
       <View style={HomeStyles.Home}>
@@ -53,24 +60,7 @@ export default class extends React.Component {
 
         {/*  */}
 
-        <TouchableOpacity
-          activeOpacity={0.8}
-          style={[
-            HomeStyles.Home_Button,
-            {
-              //   backgroundColor: "#84E4F9",
-              backgroundColor: "#808080",
-            },
-          ]}
-          onPress={() => {
-            alert("준비중입니다!");
-          }}
-        >
-          <Text style={HomeStyles.Home_Text}>
-            <SimpleLineIcons name="present" size={30} color="black" />
-            복주머니 시뮬레이터
-          </Text>
-        </TouchableOpacity>
+        <View style={HomeStyles.Home_Button}></View>
       </View>
     );
   }

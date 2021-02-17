@@ -35,6 +35,24 @@ export const Option = (props) => {
   );
 };
 
+export const OptionDisplay = (props) => {
+  const { option, value } = props;
+
+  return (
+    <TouchableOpacity style={Styles.Option_Btn} activeOpacity={1}>
+      <Text style={Styles.Option_Text}>
+        {option} : {value}
+      </Text>
+      <AntDesign
+        style={Styles.Option_Icon}
+        name="lock"
+        size={24}
+        color="black"
+      />
+    </TouchableOpacity>
+  );
+};
+
 export const SelectOpion = (props) => {
   const { id, option, value, disable, selectState, setSelectState } = props;
 

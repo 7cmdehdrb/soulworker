@@ -25,6 +25,24 @@ export var defaultState = {
       lock: false,
     },
   },
+  beforeOptions: {
+    opt1: {
+      option: 0,
+      value: 0,
+    },
+    opt2: {
+      option: 1,
+      value: 0,
+    },
+    opt3: {
+      option: 2,
+      value: 0,
+    },
+    opt4: {
+      option: 3,
+      value: 0,
+    },
+  },
 };
 
 export function resetState() {
@@ -51,6 +69,24 @@ export function resetState() {
       option: 3,
       value: 0,
       lock: false,
+    },
+  };
+  defaultState.beforeOptions = {
+    opt1: {
+      option: 0,
+      value: 0,
+    },
+    opt2: {
+      option: 1,
+      value: 0,
+    },
+    opt3: {
+      option: 2,
+      value: 0,
+    },
+    opt4: {
+      option: 3,
+      value: 0,
     },
   };
 }

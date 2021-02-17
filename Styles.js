@@ -13,7 +13,7 @@ export const Styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#292929",
     opacity: 70,
-    width: "80%",
+    width: "95%",
     marginTop: "1%",
     paddingHorizontal: 10,
     borderRadius: 10,
@@ -104,11 +104,13 @@ export const Styles = StyleSheet.create({
     borderRadius: 5,
     width: "100%",
     marginTop: 5,
+    fontFamily: "NanumSquare",
   },
   orange_text: {
     fontWeight: "bold",
     color: "#ffd66a",
   },
+  // ================  //
   Converter_Option: {
     flex: 6,
     justifyContent: "center",
@@ -324,5 +326,25 @@ export const HomeStyles = StyleSheet.create({
     color: "black",
     fontSize: 25,
     fontWeight: "bold",
+  },
+  Home_Help_Button: {
+    position: "absolute",
+    right: 0,
+    top: 0,
+    margin: 10,
+  },
+  Home_Modal: {
+    flex: 1,
+  },
+  Home_Help: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  Home_Image: {
+    flex: 1,
+    resizeMode: "contain",
+    height: "85%",
+    width: "85%",
   },
 });

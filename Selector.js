@@ -5,7 +5,7 @@ import { defaultState, resetState } from "./state";
 
 const App = (props) => {
   const [selectedValue, setSelectedValue] = useState("vs_wp_hr");
-  const { setState, setTemp, value } = props;
+  const { setState, setTemp, value, setMode } = props;
 
   return (
     <Picker
@@ -13,6 +13,7 @@ const App = (props) => {
       style={styles.text}
       onValueChange={(selectedItem) => {
         resetState();
+        setMode("converter");
         defaultState.itemCode = selectedItem;
         setSelectedValue(selectedItem);
         setState(defaultState);
