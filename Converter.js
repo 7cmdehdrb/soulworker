@@ -11,20 +11,20 @@ import Modal from "react-native-modal";
 import { Bar } from "react-native-progress";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { AntDesign } from "@expo/vector-icons";
-import OptionTable from "./Table";
+import { OptionTable } from "./Table";
 import { Option, SelectOpion, OptionDisplay } from "./Options";
 import { Styles, ButtonStyles, ModalStyles, HomeStyles } from "./Styles";
 import Selector from "./Selector";
 import { defaultState, resetState } from "./state";
 import { cFunction, getRandomInt } from "./utils";
-import DB from "./db";
+import DB from "./ConverterDB";
 
 // File //
 
-import Converter_BG from "./src/converter_patt2.png";
-import Converter_Image from "./src/converter.png";
-import Cell_Image from "./src/cell.png";
-import Converter_Help from "./src/converter_help.png";
+import Converter_BG from "./src/converter/converter_patt2.png";
+import Converter_Image from "./src/converter/converter.png";
+import Cell_Image from "./src/converter/cell.png";
+import Converter_Help from "./src/converter/converter_help.png";
 
 function Converter() {
   const [state, setState] = useState(defaultState);

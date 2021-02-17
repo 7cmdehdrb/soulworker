@@ -1,0 +1,252 @@
+// 2성
+
+const imgArray2N = [
+  require("./src/akashic/icons/2_BlackGauntlet_N.png"),
+  require("./src/akashic/icons/2_BonCrasher_N.png"),
+  require("./src/akashic/icons/2_Brock_N.png"),
+  require("./src/akashic/icons/2_Cain_N.png"),
+  require("./src/akashic/icons/2_Cell_N.png"),
+  require("./src/akashic/icons/2_Chaser_N.png"),
+  require("./src/akashic/icons/2_DancingShadow_N.png"),
+  require("./src/akashic/icons/2_DarkAlligator_N.png"),
+  require("./src/akashic/icons/2_EyeBeholder_N.png"),
+  require("./src/akashic/icons/2_Gallus_N.png"),
+  require("./src/akashic/icons/2_HeavyEarthquake_N.png"),
+  require("./src/akashic/icons/2_HeavyGears_N.png"),
+  require("./src/akashic/icons/2_Hell_Enforcer_N.png"),
+  require("./src/akashic/icons/2_HungryGluton_N.png"),
+  require("./src/akashic/icons/2_IntensionGarura_N.png"),
+  require("./src/akashic/icons/2_Marauder_N.png"),
+  require("./src/akashic/icons/2_MegiddoMakerMK2_N.png"),
+  require("./src/akashic/icons/2_QueenGarura_N.png"),
+  require("./src/akashic/icons/2_Ran_N.png"),
+  require("./src/akashic/icons/2_RoadBuster_N.png"),
+  require("./src/akashic/icons/2_S_01_N.png"),
+  require("./src/akashic/icons/2_Sedurin_N.png"),
+  require("./src/akashic/icons/2_Senia_N.png"),
+  require("./src/akashic/icons/2_SentryCommander_N.png"),
+  require("./src/akashic/icons/2_Seon_N.png"),
+  require("./src/akashic/icons/2_SewerRat_N.png"),
+  require("./src/akashic/icons/2_STLab_N.png"),
+  require("./src/akashic/icons/2_Tempest_N.png"),
+  require("./src/akashic/icons/2_VenomMucus_N.png"),
+  require("./src/akashic/icons/2_Victor_N.png"),
+  require("./src/akashic/icons/2_Warlike_N.png"),
+  require("./src/akashic/icons/2_Wild_Stone_N.png"),
+];
+
+// 2성 히든
+
+const imgArray2H = [
+  require("./src/akashic/icons/2_BlackGauntlet_H.png"),
+  require("./src/akashic/icons/2_BonCrasher_H.png"),
+  require("./src/akashic/icons/2_Brock_H.png"),
+  require("./src/akashic/icons/2_Cain_H.png"),
+  require("./src/akashic/icons/2_Cell_H.png"),
+  require("./src/akashic/icons/2_Chaser_H.png"),
+  require("./src/akashic/icons/2_DancingShadow_H.png"),
+  require("./src/akashic/icons/2_DarkAlligator_H.png"),
+  require("./src/akashic/icons/2_EyeBeholder_H.png"),
+  require("./src/akashic/icons/2_Gallus_H.png"),
+  require("./src/akashic/icons/2_HeavyEarthquake_H.png"),
+  require("./src/akashic/icons/2_HeavyGears_H.png"),
+  require("./src/akashic/icons/2_Hell_Enforcer_H.png"),
+  require("./src/akashic/icons/2_HungryGluton_H.png"),
+  require("./src/akashic/icons/2_IntensionGarura_H.png"),
+  require("./src/akashic/icons/2_Marauder_H.png"),
+  require("./src/akashic/icons/2_MegiddoMakerMK2_H.png"),
+  require("./src/akashic/icons/2_QueenGarura_H.png"),
+  require("./src/akashic/icons/2_Ran_H.png"),
+  require("./src/akashic/icons/2_RoadBuster_H.png"),
+  require("./src/akashic/icons/2_S_01_H.png"),
+  require("./src/akashic/icons/2_Sedurin_H.png"),
+  require("./src/akashic/icons/2_Senia_H.png"),
+  require("./src/akashic/icons/2_SentryCommander_H.png"),
+  require("./src/akashic/icons/2_Seon_H.png"),
+  require("./src/akashic/icons/2_SewerRat_H.png"),
+  require("./src/akashic/icons/2_STLab_H.png"),
+  require("./src/akashic/icons/2_Tempest_H.png"),
+  require("./src/akashic/icons/2_VenomMucus_H.png"),
+  require("./src/akashic/icons/2_Victor_H.png"),
+  require("./src/akashic/icons/2_Warlike_H.png"),
+  require("./src/akashic/icons/2_Wild_Stone_H.png"),
+];
+
+// 3성
+
+const imgArray3N = [
+  require("./src/akashic/icons/3_BigAsphaltGolem_N.png"),
+  require("./src/akashic/icons/3_ForceStrike_N.png"),
+  require("./src/akashic/icons/3_Fortune_N.png"),
+  require("./src/akashic/icons/3_Hicks_N.png"),
+  require("./src/akashic/icons/3_Jeremy_N.png"),
+  require("./src/akashic/icons/3_Leona_N.png"),
+  require("./src/akashic/icons/3_Perry_N.png"),
+  require("./src/akashic/icons/3_Rawper_N.png"),
+  require("./src/akashic/icons/3_Robert_N.png"),
+  require("./src/akashic/icons/3_Sanghun_N.png"),
+  require("./src/akashic/icons/3_Sangyup_N.png"),
+  require("./src/akashic/icons/3_Sedurin_N.png"),
+  require("./src/akashic/icons/3_SentryCommander_N.png"),
+  require("./src/akashic/icons/3_SetsukaRyoco_N.png"),
+  require("./src/akashic/icons/3_Worren_N.png"),
+];
+
+// 3성 히든
+
+const imgArray3H = [
+  require("./src/akashic/icons/3_BigAsphaltGolem_H.png"),
+  require("./src/akashic/icons/3_ForceStrike_H.png"),
+  require("./src/akashic/icons/3_Fortune_H.png"),
+  require("./src/akashic/icons/3_Hicks_H.png"),
+  require("./src/akashic/icons/3_Jeremy_H.png"),
+  require("./src/akashic/icons/3_Leona_H.png"),
+  require("./src/akashic/icons/3_Perry_H.png"),
+  require("./src/akashic/icons/3_Rawper_H.png"),
+  require("./src/akashic/icons/3_Robert_H.png"),
+  require("./src/akashic/icons/3_Sanghun_H.png"),
+  require("./src/akashic/icons/3_Sangyup_H.png"),
+  require("./src/akashic/icons/3_Sedurin_H.png"),
+  require("./src/akashic/icons/3_SentryCommander_H.png"),
+  require("./src/akashic/icons/3_SetsukaRyoco_H.png"),
+  require("./src/akashic/icons/3_Worren_H.png"),
+];
+
+// 4성
+
+const imgArray4N = [
+  require("./src/akashic/icons/4_Arua_N.png"),
+  require("./src/akashic/icons/4_Beneris_N.png"),
+  require("./src/akashic/icons/4_CynthianHugh_N.png"),
+  require("./src/akashic/icons/4_Henry_N.png"),
+  require("./src/akashic/icons/4_Io_N.png"),
+  require("./src/akashic/icons/4_Ralfh_N.png"),
+  require("./src/akashic/icons/4_RapidFlame_N.png"),
+  require("./src/akashic/icons/4_RetroChii_N.png"),
+  require("./src/akashic/icons/4_RetroErwin_N.png"),
+  require("./src/akashic/icons/4_RetroHaru_N.png"),
+  require("./src/akashic/icons/4_RetroIris_N.png"),
+  require("./src/akashic/icons/4_RetroJin_N.png"),
+  require("./src/akashic/icons/4_RetroLily_N.png"),
+  require("./src/akashic/icons/4_RetroStella_N.png"),
+  require("./src/akashic/icons/4_Rita_N.png"),
+  require("./src/akashic/icons/4_Sedurin_N.png"),
+  require("./src/akashic/icons/4_Senia_N.png"),
+  require("./src/akashic/icons/4_Zenis_N.png"),
+  require("./src/akashic/icons/4_RetroEphnel_N.png"),
+];
+
+// 4성 히든
+
+const imgArray4H = [
+  require("./src/akashic/icons/4_Arua_H.png"),
+  require("./src/akashic/icons/4_Beneris_H.png"),
+  require("./src/akashic/icons/4_CynthianHugh_H.png"),
+  require("./src/akashic/icons/4_Henry_H.png"),
+  require("./src/akashic/icons/4_Io_H.png"),
+  require("./src/akashic/icons/4_Ralfh_H.png"),
+  require("./src/akashic/icons/4_RapidFlame_H.png"),
+  require("./src/akashic/icons/4_RetroChii_H.png"),
+  require("./src/akashic/icons/4_RetroErwin_H.png"),
+  require("./src/akashic/icons/4_RetroHaru_H.png"),
+  require("./src/akashic/icons/4_RetroIris_H.png"),
+  require("./src/akashic/icons/4_RetroJin_H.png"),
+  require("./src/akashic/icons/4_RetroLily_H.png"),
+  require("./src/akashic/icons/4_RetroStella_H.png"),
+  require("./src/akashic/icons/4_Rita_H.png"),
+  require("./src/akashic/icons/4_Sedurin_H.png"),
+  require("./src/akashic/icons/4_Senia_H.png"),
+  require("./src/akashic/icons/4_Zenis_H.png"),
+  require("./src/akashic/icons/4_RetroEphnel_H.png"),
+];
+
+// 5성
+
+const imgArray5N = [
+  require("./src/akashic/icons/5_Tenebris_N.png"),
+  require("./src/akashic/icons/5_Beneris_N.png"),
+  require("./src/akashic/icons/5_Arua_N.png"),
+  require("./src/akashic/icons/5_GoldLawscar_N.png"),
+  require("./src/akashic/icons/5_LunarNox_N.png"),
+  require("./src/akashic/icons/5_Apocalypse_N.png"),
+  require("./src/akashic/icons/5_BigPuppet_N.png"),
+  require("./src/akashic/icons/5_Eternity_N.png"),
+  require("./src/akashic/icons/5_GlutonArmy_N.png"),
+  require("./src/akashic/icons/5_Juggernaut_N.png"),
+  require("./src/akashic/icons/5_Lerfenne_N.png"),
+  require("./src/akashic/icons/5_Lucy_N.png"),
+  require("./src/akashic/icons/5_Mirium_N.png"),
+  require("./src/akashic/icons/5_Pandemonia_N.png"),
+  require("./src/akashic/icons/5_Ultimatum_N.png"),
+  require("./src/akashic/icons/5_Poison_N.png"),
+  require("./src/akashic/icons/5_Kent_N.png"),
+];
+
+// 5성 히든
+
+const imgArray5H = [
+  require("./src/akashic/icons/5_Tenebris_H.png"),
+  require("./src/akashic/icons/5_Beneris_H.png"),
+  require("./src/akashic/icons/5_Arua_H.png"),
+  require("./src/akashic/icons/5_GoldLawscar_H.png"),
+  require("./src/akashic/icons/5_LunarNox_H.png"),
+  require("./src/akashic/icons/5_Apocalypse_H.png"),
+  require("./src/akashic/icons/5_BigPuppet_H.png"),
+  require("./src/akashic/icons/5_Eternity_H.png"),
+  require("./src/akashic/icons/5_GlutonArmy_H.png"),
+  require("./src/akashic/icons/5_Juggernaut_H.png"),
+  require("./src/akashic/icons/5_Lerfenne_H.png"),
+  require("./src/akashic/icons/5_Lucy_H.png"),
+  require("./src/akashic/icons/5_Mirium_H.png"),
+  require("./src/akashic/icons/5_Pandemonia_H.png"),
+  require("./src/akashic/icons/5_Ultimatum_H.png"),
+  require("./src/akashic/icons/5_Poison_H.png"),
+  require("./src/akashic/icons/5_Kent_H.png"),
+];
+
+export const cardImage5N = [
+  require("./src/akashic/card_img/5_Tenebris_N.jpg"),
+  require("./src/akashic/card_img/5_Beneris_N.jpg"),
+  require("./src/akashic/card_img/5_Arua_N.jpg"),
+  require("./src/akashic/card_img/5_GoldLawscar_N.jpg"),
+  require("./src/akashic/card_img/5_LunarNox_N.jpg"),
+  require("./src/akashic/card_img/5_Apocalypse_N.jpg"),
+  require("./src/akashic/card_img/5_BigPuppet_N.jpg"),
+  require("./src/akashic/card_img/5_Eternity_N.jpg"),
+  require("./src/akashic/card_img/5_GlutonArmy_N.jpg"),
+  require("./src/akashic/card_img/5_Juggernaut_N.jpg"),
+  require("./src/akashic/card_img/5_Lerfenne_N.jpg"),
+  require("./src/akashic/card_img/5_Lucy_N.jpg"),
+  require("./src/akashic/card_img/5_Mirium_N.jpg"),
+  require("./src/akashic/card_img/5_Pandemonia_N.jpg"),
+  require("./src/akashic/card_img/5_Ultimatum_N.jpg"),
+  require("./src/akashic/card_img/5_Poison_N.jpg"),
+  require("./src/akashic/card_img/5_Kent_N.png"),
+];
+
+export const cardImage5H = [
+  require("./src/akashic/card_img/5_Tenebris_H.jpg"),
+  require("./src/akashic/card_img/5_Beneris_H.jpg"),
+  require("./src/akashic/card_img/5_Arua_H.jpg"),
+  require("./src/akashic/card_img/5_GoldLawscar_H.jpg"),
+  require("./src/akashic/card_img/5_LunarNox_H.jpg"),
+  require("./src/akashic/card_img/5_Apocalypse_H.jpg"),
+  require("./src/akashic/card_img/5_BigPuppet_H.jpg"),
+  require("./src/akashic/card_img/5_Eternity_H.jpg"),
+  require("./src/akashic/card_img/5_GlutonArmy_H.jpg"),
+  require("./src/akashic/card_img/5_Juggernaut_H.jpg"),
+  require("./src/akashic/card_img/5_Lerfenne_H.jpg"),
+  require("./src/akashic/card_img/5_Lucy_H.jpg"),
+  require("./src/akashic/card_img/5_Mirium_H.jpg"),
+  require("./src/akashic/card_img/5_Pandemonia_H.jpg"),
+  require("./src/akashic/card_img/5_Ultimatum_H.jpg"),
+  require("./src/akashic/card_img/5_Poison_H.jpg"),
+  require("./src/akashic/card_img/5_Kent_H.png"),
+];
+
+export const akashicDB = {
+  icons: {
+    normal: [imgArray2N, imgArray3N, imgArray4N, imgArray5N],
+    hidden: [imgArray2H, imgArray3H, imgArray4H, imgArray5H],
+  },
+};

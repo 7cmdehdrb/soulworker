@@ -3,6 +3,7 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import Home from "./Home";
 import Converter from "./Converter";
+import Akashic from "./Akashic";
 
 const App = createStackNavigator(
   {
@@ -16,6 +17,12 @@ const App = createStackNavigator(
       screen: Converter,
       navigationOptions: {
         title: "컨버터 시뮬레이터",
+      },
+    },
+    Akashic: {
+      screen: Akashic,
+      navigationOptions: {
+        title: "아카식 시뮬레이터",
       },
     },
   },

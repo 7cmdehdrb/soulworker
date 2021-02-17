@@ -2,9 +2,9 @@ import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import {
   Ionicons,
-  SimpleLineIcons,
   MaterialCommunityIcons,
-  AntDesign,
+  Entypo,
+  FontAwesome,
 } from "@expo/vector-icons";
 import { HomeStyles } from "./Styles";
 import SoulWorker from "./src/soulworker.png";
@@ -44,12 +44,11 @@ export default class extends React.Component {
           style={[
             HomeStyles.Home_Button,
             {
-              //   backgroundColor: "#84E4F9",
-              backgroundColor: "#808080",
+              backgroundColor: "#84E4F9",
             },
           ]}
           onPress={() => {
-            alert("준비중입니다!");
+            this.props.navigation.navigate("Akashic");
           }}
         >
           <Text style={HomeStyles.Home_Text}>
@@ -60,7 +59,47 @@ export default class extends React.Component {
 
         {/*  */}
 
-        <View style={HomeStyles.Home_Button}></View>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={[
+            HomeStyles.Home_Button,
+            {
+              backgroundColor: "gray",
+            },
+          ]}
+          onPress={() => {
+            // this.props.navigation.navigate("Akashic");
+            alert("준비중입니다...");
+          }}
+        >
+          <Text style={HomeStyles.Home_Text}>
+            <Entypo name="shield" size={30} color="black" />
+            브로치 시뮬레이터
+          </Text>
+        </TouchableOpacity>
+
+        {/*  */}
+
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={[
+            HomeStyles.Home_Button,
+            {
+              backgroundColor: "gray",
+            },
+          ]}
+          onPress={() => {
+            // this.props.navigation.navigate("Akashic");
+            alert("준비중입니다...");
+          }}
+        >
+          <Text style={HomeStyles.Home_Text}>
+            <FontAwesome name="gears" size={30} color="black" />
+            성순 시뮬레이터
+          </Text>
+        </TouchableOpacity>
+
+        {/*  */}
       </View>
     );
   }
