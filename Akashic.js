@@ -52,7 +52,7 @@ function Akashic() {
     if (percent <= 0.63) {
       // 2성 획득
       rank = 2;
-    } else if (percent <= 0.9431) {
+    } else if (percent <= 0.943) {
       // 3성 획득
       rank = 3;
     } else if (percent <= 0.987988) {
@@ -99,7 +99,7 @@ function Akashic() {
     if (percent <= 0.63) {
       // 2성 획득
       rank = 2;
-    } else if (percent <= 0.9431) {
+    } else if (percent <= 0.943) {
       // 3성 획득
       rank = 3;
     } else if (percent <= 0.987988) {

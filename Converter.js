@@ -42,6 +42,19 @@ function Converter() {
     let lock_cnt = 0;
     let j = 0;
 
+    for (let i = 0; i < 4; i++) {
+      if (defaultState.options[`opt${i + 1}`].lock) {
+        lock_cnt++;
+        converterCntAdd *= 2;
+        converterPointAdd *= 2;
+      }
+    }
+
+    if (lock_cnt >= 3) {
+      alert("옵션 잠금은 최대 2개까지 가능합니다");
+      return;
+    }
+
     for (let i = 1; i < 5; i++) {
       defaultState.beforeOptions[`opt${i}`].option =
         state.options[`opt${i}`].option;
@@ -78,19 +91,14 @@ function Converter() {
     defaultState.converterCnt += converterCntAdd;
     defaultState.converterPoint += converterPointAdd;
 
-    if (lock_cnt <= 2) {
-      setMode("loading");
-      setState(defaultState);
-      setTemp(Math.random());
-      setTimeout(() => {
-        setMode("restore");
-      }, 700);
-      return true;
-    } else {
-      alert("옵션 잠금은 한번에 2개까지 가능합니다");
-    }
+    setMode("loading");
+    setState(defaultState);
+    setTemp(Math.random());
+    setTimeout(() => {
+      setMode("restore");
+    }, 700);
 
-    return false;
+    return true;
   }
 
   function startSelectConverter() {
@@ -326,7 +334,7 @@ function Converter() {
                 onAnimationComplete={() => {}}
               />
             </View>
-          ) : mode == "converter" ? (
+          ) : mode == "converter" || mode == "restore" ? (
             <View style={Styles.Option_Part}>
               <View style={Styles.Option_Head}>
                 <Text style={Styles.Option_Head_Text}>변경 가능 옵션</Text>
@@ -336,6 +344,7 @@ function Converter() {
                 option={DB[state.itemCode].data[state.options.opt1.option][0]}
                 value={state.options.opt1.value}
                 temp={temp}
+                mode={mode}
                 lock={state.options.opt1.lock}
                 setState={setState}
                 setTemp={setTemp}
@@ -346,6 +355,7 @@ function Converter() {
                 option={DB[state.itemCode].data[state.options.opt2.option][0]}
                 value={state.options.opt2.value}
                 temp={temp}
+                mode={mode}
                 lock={state.options.opt2.lock}
                 setState={setState}
                 setTemp={setTemp}
@@ -356,6 +366,7 @@ function Converter() {
                 option={DB[state.itemCode].data[state.options.opt3.option][0]}
                 value={state.options.opt3.value}
                 temp={temp}
+                mode={mode}
                 lock={state.options.opt3.lock}
                 setState={setState}
                 setTemp={setTemp}
@@ -374,6 +385,7 @@ function Converter() {
                     : "-"
                 }
                 temp={temp}
+                mode={mode}
                 lock={state.options.opt4.lock}
                 setState={setState}
                 setTemp={setTemp}

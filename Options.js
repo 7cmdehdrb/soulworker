@@ -4,14 +4,14 @@ import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { defaultState } from "./state";
 
 export const Option = (props) => {
-  const { id, option, value, disable, lock, setState, setTemp } = props;
+  const { id, option, value, disable, lock, mode, setState, setTemp } = props;
 
   return (
     <TouchableOpacity
       style={lock == false ? Styles.Option_Btn : Styles.Option_Btn_Selected}
       activeOpacity={1}
       onPress={() => {
-        if (disable == false) {
+        if (disable == false && mode == "converter") {
           if (lock == true) {
             defaultState.options[id].lock = false;
           } else {

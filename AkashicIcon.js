@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { View, Image, Animated, TouchableOpacity } from "react-native";
 import unloadedImage from "./src/akashic/icons/undefined.png";
-import { cardImage5N, cardImage5H } from "./AkashicDB";
+import {
+  cardImage5N,
+  cardImage5H,
+  cardImage4N,
+  cardImage4H,
+} from "./AkashicDB";
 
 export function AkashicIcon(props) {
   const [animation, setAnimation] = useState(new Animated.Value(0));
@@ -127,6 +132,24 @@ export function AkashicIcon(props) {
               fadeDuration={100}
             ></Image>
           </Animated.View>
+        </TouchableOpacity>
+      ) : value[1] == 4 ? (
+        <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => {
+            setModalImage(
+              value[3] ? cardImage4H[value[2]] : cardImage4N[value[2]]
+            );
+            setModalState(true);
+          }}
+        >
+          <View style={borderStyle}>
+            <Image
+              source={value[0]}
+              loadingIndicatorSource={unloadedImage}
+              fadeDuration={100}
+            ></Image>
+          </View>
         </TouchableOpacity>
       ) : (
         <View style={borderStyle}>
