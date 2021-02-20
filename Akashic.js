@@ -7,8 +7,9 @@ import {
   ScrollView,
   Button,
 } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 import Modal from "react-native-modal";
-import { AkashicStyles } from "./Styles";
+import { AkashicStyles, HomeStyles } from "./Styles";
 import { AkashicTable } from "./Table";
 import { getRandomInt } from "./utils";
 
@@ -23,6 +24,8 @@ import H_Cnt from "./src/akashic/akashic_hidden.png";
 import N_Btn from "./src/akashic/akashic_normal_btn.png";
 import A_Btn from "./src/akashic/akashic_advance_btn.png";
 import H_Btn from "./src/akashic/akashic_hidden_btn.png";
+
+import Akashic_Help from "./src/akashic/akashic_help.png";
 
 function Akashic() {
   let defaultCount = {
@@ -42,6 +45,7 @@ function Akashic() {
   const [isPossible, setIsPossible] = useState(true);
   const [modalImage, setModalImage] = useState(null);
   const [modalState, setModalState] = useState(false);
+  const [modalState2, setModalState2] = useState(false);
   let savedListTemp = [];
 
   function getNormalAkashic() {
@@ -366,6 +370,40 @@ function Akashic() {
       </Modal>
 
       {/* modal end */}
+
+      {/* Help start */}
+
+      <TouchableOpacity
+        style={HomeStyles.Home_Help_Button}
+        activeOpacity={0.5}
+        onPress={() => {
+          setModalState2(true);
+        }}
+      >
+        <AntDesign name="questioncircle" size={40} color="#454442" />
+      </TouchableOpacity>
+
+      <Modal
+        style={HomeStyles.Home_Modal}
+        isVisible={modalState2}
+        coverScreen={true}
+        useNativeDriver={true}
+        onBackButtonPress={() => {
+          setModalState2(false);
+        }}
+      >
+        <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => {
+            setModalState2(false);
+          }}
+          style={HomeStyles.Home_Help}
+        >
+          <Image source={Akashic_Help} style={HomeStyles.Home_Image}></Image>
+        </TouchableOpacity>
+      </Modal>
+
+      {/* Help end */}
     </View>
   );
 }

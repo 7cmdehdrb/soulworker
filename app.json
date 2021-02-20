@@ -2,11 +2,11 @@
   "expo": {
     "name": "소울워커 시뮬레이터",
     "slug": "soulworkerSimulator",
-    "version": "1.1.2",
+    "version": "1.1.4",
     "orientation": "portrait",
     "icon": "./src/soyu.png",
     "splash": {
-      "image": "./src/soyu.png",
+      "image": "./src/soyu_dev.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,9 +21,9 @@
     },
     "android": {
       "package": "com.soyu.soulworkerSimulator",
-      "versionCode": 3,
+      "versionCode": 5,
       "adaptiveIcon": {
-        "foregroundImage": "./src/soyu.png",
+        "foregroundImage": "./src/soyu_dev.png",
         "backgroundColor": "#FFFFFF"
       }
     },

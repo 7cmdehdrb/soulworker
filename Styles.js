@@ -302,6 +302,7 @@ export const HomeStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
+    paddingBottom: 30,
   },
   Home_Head: {
     flex: 2,
@@ -316,10 +317,9 @@ export const HomeStyles = StyleSheet.create({
     flexDirection: "row",
     width: "80%",
     borderRadius: 10,
-    marginVertical: 30,
+    marginVertical: 20,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 30,
     resizeMode: "contain",
   },
   Home_Text: {

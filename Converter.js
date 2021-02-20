@@ -81,10 +81,6 @@ function Converter() {
           DB[defaultState.itemCode].data[selectedOption[j]][2]
         );
         j++;
-      } else {
-        lock_cnt++;
-        converterCntAdd *= 2;
-        converterPointAdd *= 2;
       }
     }
 
@@ -561,22 +557,15 @@ function Converter() {
           setModalState2(false);
         }}
       >
-        <View style={HomeStyles.Home_Help}>
-          <TouchableOpacity
-            style={{
-              position: "absolute",
-              right: 0,
-              top: 0,
-            }}
-            activeOpacity={0.5}
-            onPress={() => {
-              setModalState2(false);
-            }}
-          >
-            <AntDesign name="closecircleo" size={24} color="black" />
-          </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => {
+            setModalState2(false);
+          }}
+          style={HomeStyles.Home_Help}
+        >
           <Image source={Converter_Help} style={HomeStyles.Home_Image}></Image>
-        </View>
+        </TouchableOpacity>
       </Modal>
 
       {/* Modal End */}

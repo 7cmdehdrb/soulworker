@@ -100,6 +100,19 @@ export default class extends React.Component {
         </TouchableOpacity>
 
         {/*  */}
+
+        <Text
+          style={{
+            position: "absolute",
+            left: 0,
+            bottom: 0,
+            marginLeft: 10,
+            color: "black",
+            opacity: 0.5,
+          }}
+        >
+          Ver 1.1.4
+        </Text>
       </View>
     );
   }
