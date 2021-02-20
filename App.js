@@ -1,9 +1,12 @@
 import React from "react";
+import { View } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
+import FlashMessage from "react-native-flash-message";
 import Home from "./Home";
 import Converter from "./Converter";
 import Akashic from "./Akashic";
+import Brooch from "./Brooch";
 
 const App = createStackNavigator(
   {
@@ -23,6 +26,12 @@ const App = createStackNavigator(
       screen: Akashic,
       navigationOptions: {
         title: "아카식 시뮬레이터",
+      },
+    },
+    Brooch: {
+      screen: Brooch,
+      navigationOptions: {
+        title: "브로치 시뮬레이터",
       },
     },
   },

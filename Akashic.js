@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  Button,
-} from "react-native";
+import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import { AkashicStyles, HomeStyles } from "./Styles";
@@ -168,6 +161,17 @@ function Akashic() {
 
   return (
     <View style={AkashicStyles.container}>
+      <Text
+        style={{
+          marginTop: 20,
+          color: "black",
+          fontSize: 20,
+          fontWeight: "bold",
+        }}
+      >
+        {mode == "gacha" ? "아카식 뽑기" : "내가 획득한 5성 "}
+      </Text>
+
       <View style={AkashicStyles.my_list_container}>
         {/* 획득한 아카식 모음 (중요) */}
 
@@ -183,34 +187,36 @@ function Akashic() {
       {/* 모드 전환 */}
 
       <View style={AkashicStyles.akashic_head}>
-        <View style={AkashicStyles.akashic_head_btn}>
-          <Button
-            title="초기화"
-            color="#fad15d"
-            onPress={() => {
-              defaultCount = {
-                normal: 0,
-                advance: 0,
-                hidden: 0,
-              };
-              setCount(defaultCount);
-              setList([]);
-              setSavedList([]);
-              setMode("gacha");
-              setIsPossible(true);
-            }}
-          ></Button>
-        </View>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={AkashicStyles.button}
+          onPress={() => {
+            defaultCount = {
+              normal: 0,
+              advance: 0,
+              hidden: 0,
+            };
+            setCount(defaultCount);
+            setList([]);
+            setSavedList([]);
+            setMode("gacha");
+            setIsPossible(true);
+          }}
+        >
+          <Text style={{ fontWeight: "bold" }}>초기화</Text>
+        </TouchableOpacity>
 
-        <View style={AkashicStyles.akashic_head_btn}>
-          <Button
-            title={mode == "gacha" ? "결과보기(5성)" : "뽑기모드"}
-            color="#fad15d"
-            onPress={() => {
-              setMode(mode == "gacha" ? "save" : "gacha");
-            }}
-          ></Button>
-        </View>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={AkashicStyles.button}
+          onPress={() => {
+            setMode(mode == "gacha" ? "save" : "gacha");
+          }}
+        >
+          <Text style={{ fontWeight: "bold" }}>
+            {mode == "gacha" ? "결과보기(5성)" : "아카식 뽑기"}
+          </Text>
+        </TouchableOpacity>
       </View>
 
       <View style={AkashicStyles.akashic_btn_container}>

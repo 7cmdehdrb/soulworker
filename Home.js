@@ -6,6 +6,7 @@ import {
   Entypo,
   FontAwesome,
 } from "@expo/vector-icons";
+import { resetState } from "./state";
 import { HomeStyles } from "./Styles";
 import SoulWorker from "./src/soulworker.png";
 
@@ -28,6 +29,7 @@ export default class extends React.Component {
             },
           ]}
           onPress={() => {
+            resetState();
             this.props.navigation.navigate("Converter");
           }}
         >
@@ -64,12 +66,11 @@ export default class extends React.Component {
           style={[
             HomeStyles.Home_Button,
             {
-              backgroundColor: "gray",
+              backgroundColor: "#dc9efc",
             },
           ]}
           onPress={() => {
-            // this.props.navigation.navigate("Akashic");
-            alert("준비중입니다...");
+            this.props.navigation.navigate("Brooch");
           }}
         >
           <Text style={HomeStyles.Home_Text}>
@@ -111,7 +112,7 @@ export default class extends React.Component {
             opacity: 0.5,
           }}
         >
-          Ver 1.1.4
+          Ver 1.2.0
         </Text>
       </View>
     );

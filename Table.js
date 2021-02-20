@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Image, Animated } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { Table, Row, Rows } from "react-native-table-component";
 import { AkashicIcon } from "./AkashicIcon";
+import { BroochIcon } from "./BroochIcon";
 import DB from "./ConverterDB";
 
 export function OptionTable(props) {
@@ -68,7 +69,7 @@ export function AkashicTable(props) {
           style={{
             flexDirection: "row",
           }}
-          key={`${i}-${list[i][0]}`}
+          key={`${temp++}-${list[i][0]}`}
         >
           {myloop}
         </View>
@@ -94,6 +95,92 @@ export function AkashicTable(props) {
         flexDirection: "row",
       }}
       key={`${temp++}-${date.getTime()}`}
+    >
+      {myloop}
+    </View>
+  );
+
+  return (
+    <View
+      style={{
+        flexDirection: "column",
+        marginBottom: 20,
+      }}
+    >
+      {outerLoop}
+    </View>
+  );
+}
+
+export function BroochTable(props) {
+  const date = new Date();
+  const { list, setModalState, setModalData } = props;
+
+  function setModalData2(data) {
+    setModalData(data);
+  }
+
+  function setModalState2(data) {
+    setModalState(data);
+  }
+
+  let temp = 0;
+  var outerLoop = [];
+  var myloop = [];
+
+  if (list.length == 0) {
+    return (
+      <Text
+        key="noContent"
+        style={{
+          flex: 1,
+          fontSize: 25,
+          fontWeight: "bold",
+          marginTop: 100,
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
+        획득한 브로치가 없습니다
+      </Text>
+    );
+  }
+
+  for (let i = 0; i < list.length; i++) {
+    if (myloop.length == 3) {
+      outerLoop.push(
+        <View
+          key={`${temp++}_${date.getTime()}`}
+          style={{
+            flexDirection: "row",
+            marginVertical: 12,
+          }}
+        >
+          {myloop}
+        </View>
+      );
+
+      myloop = [];
+    }
+
+    myloop.push(
+      <BroochIcon
+        key={`${temp++}_${date.getTime()}`}
+        data={list[i]}
+        setModalState={setModalState2}
+        setModalData={setModalData2}
+      ></BroochIcon>
+    );
+  }
+
+  outerLoop.push(
+    <View
+      key={`${temp++}_${date.getTime()}`}
+      style={{
+        flexDirection: "row",
+        marginVertical: 20,
+      }}
     >
       {myloop}
     </View>

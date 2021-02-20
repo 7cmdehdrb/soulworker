@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Alert,
   ImageBackground,
   Image,
   Text,
@@ -51,7 +52,16 @@ function Converter() {
     }
 
     if (lock_cnt >= 3) {
-      alert("옵션 잠금은 최대 2개까지 가능합니다");
+      Alert.alert(
+        null,
+        "옵션 잠금은 최대 2개까지 가능합니다",
+        [
+          {
+            text: "확인",
+          },
+        ],
+        { cancelable: false }
+      );
       return;
     }
 
@@ -99,7 +109,16 @@ function Converter() {
 
   function startSelectConverter() {
     if (state.converterPoint < 1) {
-      alert("선택 제련 포인트가 부족합니다");
+      Alert.alert(
+        null,
+        "선택 제련 포인트가 부족합니다!\n포인트 충전 셀을 이용해 포인트를 충전해주세요",
+        [
+          {
+            text: "확인",
+          },
+        ],
+        { cancelable: false }
+      );
     } else {
       if ((1 <= selectState) & (selectState <= 4)) {
         for (let i = 1; i < 5; i++) {
@@ -126,7 +145,16 @@ function Converter() {
         setState(defaultState);
         return true;
       } else {
-        alert("선택 제련할 옵션을 선택해주세요");
+        Alert.alert(
+          null,
+          "선택 제련할 옵션을 선택해주세요",
+          [
+            {
+              text: "확인",
+            },
+          ],
+          { cancelable: false }
+        );
       }
     }
 
