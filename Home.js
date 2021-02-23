@@ -8,6 +8,7 @@ import {
   AntDesign,
   Feather,
 } from "@expo/vector-icons";
+import { getItemFromAsync, setItemToAsync } from "./AsyncStorage";
 import { resetState } from "./ConverterState";
 import { HomeStyles } from "./Styles";
 import SoulWorker from "./src/soulworker_simulator.png";
@@ -16,6 +17,26 @@ export default class extends React.Component {
   state = {
     modalVisible: false,
   };
+
+  async componentDidMount() {
+    const converter = await getItemFromAsync("converter");
+    const akashic = await getItemFromAsync("akashic");
+    const brooch = await getItemFromAsync("brooch");
+    const weapon = await getItemFromAsync("weapon");
+
+    if (converter == null) {
+      await setItemToAsync("converter", false);
+    }
+    if (akashic == null) {
+      await setItemToAsync("akashic", false);
+    }
+    if (brooch == null) {
+      await setItemToAsync("brooch", false);
+    }
+    if (weapon == null) {
+      await setItemToAsync("weapon", 0);
+    }
+  }
 
   render() {
     return (

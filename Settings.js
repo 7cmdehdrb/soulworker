@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Switch, Text } from "react-native";
+import Selector from "./SettingsSelector";
 import { SettingStyles } from "./Styles";
 import { getItemFromAsync, setItemToAsync } from "./AsyncStorage";
 
@@ -44,6 +45,23 @@ export const Settings = () => {
   return (
     <View style={SettingStyles.container}>
       <View style={SettingStyles.head}></View>
+
+      <Text style={[SettingStyles.text, { fontSize: 24 }]}>
+        컨버터 제련 무기
+      </Text>
+
+      <View style={SettingStyles.box}>
+        <View
+          style={{
+            width: "70%",
+            borderWidth: 2,
+            borderColor: "black",
+            borderRadius: 5,
+          }}
+        >
+          <Selector></Selector>
+        </View>
+      </View>
 
       <View style={SettingStyles.box}>
         <Text style={SettingStyles.text}>컨버터 효과음</Text>

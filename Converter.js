@@ -20,7 +20,7 @@ import Selector from "./ConverterSelector";
 import { defaultState, resetState } from "./ConverterState";
 import { cFunction, getRandomInt } from "./utils";
 import { getItemFromAsync } from "./AsyncStorage";
-import DB from "./ConverterDB";
+import { DB, weaponImage } from "./ConverterDB";
 
 // File //
 
@@ -36,6 +36,7 @@ function Converter() {
   const [modalState, setModalState] = useState(false);
   const [modalState2, setModalState2] = useState(false);
   const [startPossible, setStartPossible] = useState(true);
+  const [weaponCode, setWeaponCode] = useState(0);
   const [selectState, setSelectState] = useState(0);
 
   const [sound, setSound] = useState();
@@ -43,7 +44,10 @@ function Converter() {
 
   async function init() {
     const opt = await getItemFromAsync("converter");
+    const code = await getItemFromAsync("weapon");
+
     setSoundOption(opt);
+    setWeaponCode(code);
   }
 
   async function playSound() {
@@ -303,7 +307,11 @@ function Converter() {
             <View style={Styles.Converter_Image}>
               <ImageBackground source={Converter_BG} style={Styles.bgImage}>
                 <Image
-                  source={DB[state.itemCode].image}
+                  source={
+                    state.itemCode.includes("wp")
+                      ? weaponImage[`${state.itemCode}_${weaponCode}`]
+                      : DB[state.itemCode].image
+                  }
                   style={Styles.Item_Image}
                 />
 

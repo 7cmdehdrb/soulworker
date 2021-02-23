@@ -24,7 +24,7 @@ import lunar_ac_ring from "./src/converter/lunar_ac_ring.png";
 
 import undefinedImage from "./src/converter/undefined.png";
 
-const db = {
+export const DB = {
   // 바썬
   undefined: {
     available: 3,
@@ -310,4 +310,50 @@ const db = {
   },
 };
 
-export default db;
+export const weaponImage = {
+  vs_wp_hr_0: require("./src/converter/vs_wp_hr_0.png"),
+  vs_wp_hr_1: require("./src/converter/vs_wp_hr_1.png"),
+  vs_wp_hr_2: require("./src/converter/vs_wp_hr_2.png"),
+  vs_wp_hr_3: require("./src/converter/vs_wp_hr_3.png"),
+  vs_wp_hr_4: require("./src/converter/vs_wp_hr_4.png"),
+  vs_wp_hr_5: require("./src/converter/vs_wp_hr_5.png"),
+  vs_wp_hr_6: require("./src/converter/vs_wp_hr_6.png"),
+  vs_wp_hr_7: require("./src/converter/vs_wp_hr_7.png"),
+  vs_wp_hr_8: require("./src/converter/vs_wp_hr_8.png"),
+  vs_wp_ex_0: require("./src/converter/vs_wp_ex_0.png"),
+  vs_wp_ex_1: require("./src/converter/vs_wp_ex_1.png"),
+  vs_wp_ex_2: require("./src/converter/vs_wp_ex_2.png"),
+  vs_wp_ex_3: require("./src/converter/vs_wp_ex_3.png"),
+  vs_wp_ex_4: require("./src/converter/vs_wp_ex_4.png"),
+  vs_wp_ex_5: require("./src/converter/vs_wp_ex_5.png"),
+  vs_wp_ex_6: require("./src/converter/vs_wp_ex_6.png"),
+  vs_wp_ex_7: require("./src/converter/vs_wp_ex_7.png"),
+  vs_wp_ex_8: require("./src/converter/vs_wp_ex_8.png"),
+  vs_wp_st_0: require("./src/converter/vs_wp_st_0.png"),
+  vs_wp_st_1: require("./src/converter/vs_wp_st_1.png"),
+  vs_wp_st_2: require("./src/converter/vs_wp_st_2.png"),
+  vs_wp_st_3: require("./src/converter/vs_wp_st_3.png"),
+  vs_wp_st_4: require("./src/converter/vs_wp_st_4.png"),
+  vs_wp_st_5: require("./src/converter/vs_wp_st_5.png"),
+  vs_wp_st_6: require("./src/converter/vs_wp_st_6.png"),
+  vs_wp_st_7: require("./src/converter/vs_wp_st_7.png"),
+  vs_wp_st_8: require("./src/converter/vs_wp_st_8.png"),
+  lunar_wp_ex_0: require("./src/converter/lunar_wp_ex_0.png"),
+  lunar_wp_ex_1: require("./src/converter/lunar_wp_ex_1.png"),
+  lunar_wp_ex_2: require("./src/converter/lunar_wp_ex_2.png"),
+  lunar_wp_ex_3: require("./src/converter/lunar_wp_ex_3.png"),
+  lunar_wp_ex_4: require("./src/converter/lunar_wp_ex_4.png"),
+  lunar_wp_ex_5: require("./src/converter/lunar_wp_ex_5.png"),
+  lunar_wp_ex_6: require("./src/converter/lunar_wp_ex_6.png"),
+  lunar_wp_ex_7: require("./src/converter/lunar_wp_ex_7.png"),
+  lunar_wp_ex_8: require("./src/converter/lunar_wp_ex_8.png"),
+  lunar_wp_st_0: require("./src/converter/lunar_wp_st_0.png"),
+  lunar_wp_st_1: require("./src/converter/lunar_wp_st_1.png"),
+  lunar_wp_st_2: require("./src/converter/lunar_wp_st_2.png"),
+  lunar_wp_st_3: require("./src/converter/lunar_wp_st_3.png"),
+  lunar_wp_st_4: require("./src/converter/lunar_wp_st_4.png"),
+  lunar_wp_st_5: require("./src/converter/lunar_wp_st_5.png"),
+  lunar_wp_st_6: require("./src/converter/lunar_wp_st_6.png"),
+  lunar_wp_st_7: require("./src/converter/lunar_wp_st_7.png"),
+  lunar_wp_st_8: require("./src/converter/lunar_wp_st_8.png"),
+};

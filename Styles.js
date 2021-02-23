@@ -654,6 +654,7 @@ export const SettingStyles = StyleSheet.create({
   },
   box: {
     flex: 2,
+    width: "80%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
