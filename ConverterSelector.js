@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { Picker } from "@react-native-community/picker";
-import { defaultState, resetState } from "./state";
+import { defaultState, resetState } from "./ConverterState";
 
 const App = (props) => {
-  const [selectedValue, setSelectedValue] = useState("vs_wp_hr");
+  const [selectedValue, setSelectedValue] = useState("undefined");
   const { setState, setTemp, value, setMode } = props;
 
   return (
@@ -20,6 +20,7 @@ const App = (props) => {
         setTemp(Math.random());
       }}
     >
+      <Picker.Item label="장비 선택" value="undefined" enabled={false} />
       {/* 바썬 */}
       <Picker.Item label="페일 애쉬스 웨폰 히어로" value="vs_wp_hr" />
       <Picker.Item label="페일 애쉬스 웨폰 익스텐드" value="vs_wp_ex" />

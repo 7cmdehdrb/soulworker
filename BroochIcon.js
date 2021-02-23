@@ -44,7 +44,7 @@ export function BroochIcon(props) {
           {
             color:
               data.rank == "tera"
-                ? "#a543cc"
+                ? "#8733A8"
                 : data.rank == "giga"
                 ? "#b32442"
                 : "#f7d067",

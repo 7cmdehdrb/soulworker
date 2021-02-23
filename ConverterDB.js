@@ -20,8 +20,29 @@ import lunar_ac_ear from "./src/converter/lunar_ac_ear.png";
 import lunar_ac_pend from "./src/converter/lunar_ac_pend.png";
 import lunar_ac_ring from "./src/converter/lunar_ac_ring.png";
 
+// 미정의
+
+import undefinedImage from "./src/converter/undefined.png";
+
 const db = {
   // 바썬
+  undefined: {
+    available: 3,
+    data: [
+      ["옵션없음", 0, 0],
+      ["옵션없음", 0, 0],
+      ["옵션없음", 0, 0],
+      ["옵션없음", 0, 0],
+      ["옵션없음", 0, 0],
+      ["옵션없음", 0, 0],
+      ["옵션없음", 0, 0],
+      ["옵션없음", 0, 0],
+      ["옵션없음", 0, 0],
+      ["옵션없음", 0, 0],
+      ["옵션없음", 0, 0],
+    ],
+    image: undefinedImage,
+  },
   vs_wp_st: {
     available: 3,
     data: [

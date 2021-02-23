@@ -1,6 +1,6 @@
 export var defaultState = {
   // 1. 무기 코드, 2. 컨버터 수, 3. n번째 옵션/수치, 4. 고정 여부
-  itemCode: "vs_wp_hr",
+  itemCode: "undefined",
   converterCnt: 0,
   converterPoint: 0,
   options: {
@@ -46,7 +46,7 @@ export var defaultState = {
 };
 
 export function resetState() {
-  defaultState.itemCode = "vs_wp_hr";
+  defaultState.itemCode = "undefined";
   defaultState.converterCnt = 0;
   defaultState.converterPoint = 0;
   defaultState.options = {

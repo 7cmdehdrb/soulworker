@@ -11,13 +11,15 @@ import {
 import Modal from "react-native-modal";
 import { Bar } from "react-native-progress";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
+import { Audio } from "expo-av";
 import { AntDesign } from "@expo/vector-icons";
 import { OptionTable } from "./Table";
-import { Option, SelectOpion, OptionDisplay } from "./Options";
+import { Option, SelectOpion, OptionDisplay } from "./ConverterOptions";
 import { Styles, ButtonStyles, ModalStyles, HomeStyles } from "./Styles";
-import Selector from "./Selector";
-import { defaultState, resetState } from "./state";
+import Selector from "./ConverterSelector";
+import { defaultState, resetState } from "./ConverterState";
 import { cFunction, getRandomInt } from "./utils";
+import { getItemFromAsync } from "./AsyncStorage";
 import DB from "./ConverterDB";
 
 // File //
@@ -30,13 +32,41 @@ import Converter_Help from "./src/converter/converter_help.png";
 function Converter() {
   const [state, setState] = useState(defaultState);
   const [mode, setMode] = useState("converter");
-  const [selectState, setSelectState] = useState(0);
   const [temp, setTemp] = useState(0);
   const [modalState, setModalState] = useState(false);
   const [modalState2, setModalState2] = useState(false);
   const [startPossible, setStartPossible] = useState(true);
+  const [selectState, setSelectState] = useState(0);
 
-  function startConverter() {
+  const [sound, setSound] = useState();
+  const [soundOption, setSoundOption] = useState(false);
+
+  async function init() {
+    const opt = await getItemFromAsync("converter");
+    setSoundOption(opt);
+  }
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require("./src/sound/akashic.mp3")
+    );
+    setSound(sound);
+
+    await sound.playAsync();
+  }
+
+  React.useEffect(() => {
+    init();
+
+    return sound
+      ? () => {
+          console.log("unloading");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
+  async function startConverter() {
     let exceptionData = [];
     let converterCntAdd = 1;
     let converterPointAdd = 0.05;
@@ -51,6 +81,8 @@ function Converter() {
       }
     }
 
+    // 멈춤조건
+
     if (lock_cnt >= 3) {
       Alert.alert(
         null,
@@ -63,7 +95,21 @@ function Converter() {
         { cancelable: false }
       );
       return;
+    } else if (state.itemCode == "undefined") {
+      Alert.alert(
+        null,
+        "장비를 선택해주세요!",
+        [
+          {
+            text: "확인",
+          },
+        ],
+        { cancelable: false }
+      );
+      return;
     }
+
+    // 멈춤조건 END
 
     for (let i = 1; i < 5; i++) {
       defaultState.beforeOptions[`opt${i}`].option =
@@ -104,10 +150,16 @@ function Converter() {
       setMode("restore");
     }, 700);
 
+    if (soundOption) {
+      playSound();
+    }
+
     return true;
   }
 
   function startSelectConverter() {
+    // 멈춤조건
+
     if (state.converterPoint < 1) {
       Alert.alert(
         null,
@@ -119,43 +171,63 @@ function Converter() {
         ],
         { cancelable: false }
       );
-    } else {
-      if ((1 <= selectState) & (selectState <= 4)) {
-        for (let i = 1; i < 5; i++) {
-          defaultState.beforeOptions[`opt${i}`].option =
-            state.options[`opt${i}`].option;
-          defaultState.beforeOptions[`opt${i}`].value =
-            state.options[`opt${i}`].value;
-        }
+      return;
+    } else if (state.itemCode == "undefined") {
+      Alert.alert(
+        null,
+        "장비를 선택해주세요!",
+        [
+          {
+            text: "확인",
+          },
+        ],
+        { cancelable: false }
+      );
+      return;
+    }
 
-        defaultState.options[`opt${selectState}`].value = getRandomInt(
-          DB[defaultState.itemCode].data[
-            defaultState.options[`opt${selectState}`].option
-          ][1],
-          DB[defaultState.itemCode].data[
-            defaultState.options[`opt${selectState}`].option
-          ][2]
-        );
-        defaultState.converterPoint -= 1;
-        setMode("loading");
-        setTimeout(() => {
-          setSelectState(0);
-          setMode("restore");
-        }, 700);
-        setState(defaultState);
-        return true;
-      } else {
-        Alert.alert(
-          null,
-          "선택 제련할 옵션을 선택해주세요",
-          [
-            {
-              text: "확인",
-            },
-          ],
-          { cancelable: false }
-        );
+    // 멈춤조건 END
+
+    if ((1 <= selectState) & (selectState <= 4)) {
+      for (let i = 1; i < 5; i++) {
+        defaultState.beforeOptions[`opt${i}`].option =
+          state.options[`opt${i}`].option;
+        defaultState.beforeOptions[`opt${i}`].value =
+          state.options[`opt${i}`].value;
       }
+
+      defaultState.options[`opt${selectState}`].value = getRandomInt(
+        DB[defaultState.itemCode].data[
+          defaultState.options[`opt${selectState}`].option
+        ][1],
+        DB[defaultState.itemCode].data[
+          defaultState.options[`opt${selectState}`].option
+        ][2]
+      );
+      defaultState.converterPoint -= 1;
+      setMode("loading");
+      setTimeout(() => {
+        setSelectState(0);
+        setMode("restore");
+      }, 700);
+      setState(defaultState);
+
+      if (soundOption) {
+        playSound();
+      }
+
+      return true;
+    } else {
+      Alert.alert(
+        null,
+        "선택 제련할 옵션을 선택해주세요",
+        [
+          {
+            text: "확인",
+          },
+        ],
+        { cancelable: false }
+      );
     }
 
     return false;
@@ -324,17 +396,42 @@ function Converter() {
                   setModalState(true);
                 }}
               >
-                <Text style={ButtonStyles.text}>옵션보기 ▶</Text>
+                <Text style={ButtonStyles.text}>옵션보기</Text>
               </TouchableOpacity>
               {/*  */}
               <TouchableOpacity
                 activeOpacity={0.8}
                 style={ButtonStyles.button}
-                onPress={() => {
-                  resetState();
-                  setMode("converter");
-                  setState(defaultState);
-                  setTemp(Math.random());
+                onPress={async () => {
+                  const AsyncAlert = async () =>
+                    new Promise((resolve) => {
+                      Alert.alert(
+                        null,
+                        "초기화시 모든 옵션, 사용한 컨버터 수, 제련 포인트가 초기화됩니다.\n정말 초기화 하시겠습니까?",
+                        [
+                          {
+                            text: "아니요",
+                            onPress: () => {
+                              resolve("YES");
+                            },
+                            style: "cancel",
+                          },
+                          {
+                            text: "네",
+                            onPress: () => {
+                              resetState();
+                              setMode("converter");
+                              setState(defaultState);
+                              setTemp(Math.random());
+                              resolve("YES");
+                            },
+                          },
+                        ],
+                        { cancelable: false }
+                      );
+                    });
+
+                  await AsyncAlert();
                 }}
               >
                 <Text style={ButtonStyles.text}>초기화</Text>

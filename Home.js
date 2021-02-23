@@ -5,10 +5,12 @@ import {
   MaterialCommunityIcons,
   Entypo,
   FontAwesome,
+  AntDesign,
+  Feather,
 } from "@expo/vector-icons";
-import { resetState } from "./state";
+import { resetState } from "./ConverterState";
 import { HomeStyles } from "./Styles";
-import SoulWorker from "./src/soulworker.png";
+import SoulWorker from "./src/soulworker_simulator.png";
 
 export default class extends React.Component {
   state = {
@@ -18,7 +20,10 @@ export default class extends React.Component {
   render() {
     return (
       <View style={HomeStyles.Home}>
-        <Image style={HomeStyles.Home_Head} source={SoulWorker}></Image>
+        <Image
+          style={[HomeStyles.Home_Head, { marginVertical: 10 }]}
+          source={SoulWorker}
+        ></Image>
 
         <TouchableOpacity
           activeOpacity={0.8}
@@ -102,6 +107,46 @@ export default class extends React.Component {
 
         {/*  */}
 
+        <View style={HomeStyles.Home_Settings_box}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={[
+              HomeStyles.Home_Settings_btn,
+              {
+                backgroundColor: "#D6FF9A",
+              },
+            ]}
+            onPress={() => {
+              this.props.navigation.navigate("Settings");
+            }}
+          >
+            <Text style={[HomeStyles.Home_Text, { fontSize: 24 }]}>
+              <Feather name="settings" size={24} color="black" />
+              설정
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={[
+              HomeStyles.Home_Settings_btn,
+              {
+                backgroundColor: "#FFC7C7",
+              },
+            ]}
+            onPress={() => {
+              this.props.navigation.navigate("Helps");
+            }}
+          >
+            <Text style={[HomeStyles.Home_Text, { fontSize: 24 }]}>
+              <AntDesign name="questioncircleo" size={24} color="black" />
+              도움말
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/*  */}
+
         <Text
           style={{
             position: "absolute",
@@ -112,7 +157,7 @@ export default class extends React.Component {
             opacity: 0.5,
           }}
         >
-          Ver 1.2.0
+          Ver 1.2.1
         </Text>
       </View>
     );

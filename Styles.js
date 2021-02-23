@@ -302,7 +302,7 @@ export const HomeStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
-    paddingBottom: 30,
+    paddingBottom: 10,
   },
   Home_Head: {
     flex: 2,
@@ -313,11 +313,11 @@ export const HomeStyles = StyleSheet.create({
     resizeMode: "contain",
   },
   Home_Button: {
-    flex: 1,
+    flex: 2,
     flexDirection: "row",
     width: "80%",
     borderRadius: 10,
-    marginVertical: 20,
+    marginVertical: 10,
     justifyContent: "center",
     alignItems: "center",
     resizeMode: "contain",
@@ -346,6 +346,25 @@ export const HomeStyles = StyleSheet.create({
     resizeMode: "contain",
     height: "85%",
     width: "85%",
+  },
+  Home_Settings_box: {
+    flex: 1,
+    width: "80%",
+    flexDirection: "row",
+    marginVertical: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  Home_Settings_btn: {
+    flex: 1,
+    flexDirection: "row",
+    width: "80%",
+    height: "100%",
+    borderRadius: 10,
+    marginVertical: 10,
+    marginHorizontal: 5,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
@@ -621,5 +640,27 @@ export const BroochButtonStyles = StyleSheet.create({
     textShadowColor: "black",
     textShadowRadius: 2,
     elevation: 10,
+  },
+});
+
+export const SettingStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  head: {
+    flex: 1,
+  },
+  box: {
+    flex: 2,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  text: {
+    fontWeight: "bold",
+    fontSize: 24,
+    marginHorizontal: 10,
   },
 });

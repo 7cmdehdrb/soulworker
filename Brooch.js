@@ -9,12 +9,14 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Modal from "react-native-modal";
+import { Audio } from "expo-av";
 import FlashMessage, { showMessage } from "react-native-flash-message";
 import { BroochStyles, BroochButtonStyles, HomeStyles } from "./Styles";
 import { BroochTable } from "./Table";
 import { getRandomInt } from "./utils";
 
 import * as DB from "./BroochDB";
+import { getItemFromAsync } from "./AsyncStorage";
 
 // IMAGE
 
@@ -50,6 +52,34 @@ function Brooch() {
     theme: "SD",
     type: "ATK",
   });
+
+  const [sound, setSound] = useState();
+  const [soundOption, setSoundOption] = useState(false);
+
+  async function init() {
+    const opt = await getItemFromAsync("brooch");
+    setSoundOption(opt);
+  }
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require("./src/sound/brooch.mp3")
+    );
+    setSound(sound);
+
+    await sound.playAsync();
+  }
+
+  React.useEffect(() => {
+    init();
+
+    return sound
+      ? () => {
+          console.log("unloading");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   function getBrooch(type) {
     let brooch = 0;
@@ -230,6 +260,10 @@ function Brooch() {
 
     setState(defaultState);
     setList(tempList);
+
+    if (soundOption) {
+      playSound();
+    }
   }
 
   return (
@@ -262,18 +296,44 @@ function Brooch() {
         <TouchableOpacity
           activeOpacity={0.8}
           style={BroochButtonStyles.button}
-          onPress={() => {
-            defaultState = {
-              TERA: 0,
-              ATK: 0,
-              DEF: 0,
-              FUN: 0,
-            };
-            setState(defaultState);
-            setMode("gacha");
-            setPossible(true);
-            setList([]);
-            setSavedList([]);
+          onPress={async () => {
+            const AsyncAlert = async () =>
+              new Promise((resolve) => {
+                Alert.alert(
+                  null,
+                  "초기화시 저장한 브로치와 사용한 전송기 수가 초기화됩니다.\n정말 초기화 하시겠습니까?",
+                  [
+                    {
+                      text: "아니요",
+                      onPress: () => {
+                        resolve("YES");
+                      },
+                      style: "cancel",
+                    },
+                    {
+                      text: "네",
+                      onPress: () => {
+                        defaultState = {
+                          TERA: 0,
+                          ATK: 0,
+                          DEF: 0,
+                          FUN: 0,
+                        };
+                        setState(defaultState);
+                        setMode("gacha");
+                        setPossible(true);
+                        setList([]);
+                        setSavedList([]);
+
+                        resolve("YES");
+                      },
+                    },
+                  ],
+                  { cancelable: false }
+                );
+              });
+
+            await AsyncAlert();
           }}
         >
           <Text style={{ fontWeight: "bold" }}>초기화</Text>
@@ -287,7 +347,7 @@ function Brooch() {
           }}
         >
           <Text style={{ fontWeight: "bold" }}>
-            {mode == "gacha" ? "결과보기" : "브로치 뽑기"}
+            {mode == "gacha" ? "저장함 보기" : "브로치 뽑기"}
           </Text>
         </TouchableOpacity>
       </View>

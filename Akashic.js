@@ -1,7 +1,15 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  Alert,
+} from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Modal from "react-native-modal";
+import { Audio } from "expo-av";
 import { AkashicStyles, HomeStyles } from "./Styles";
 import { AkashicTable } from "./Table";
 import { getRandomInt } from "./utils";
@@ -9,6 +17,7 @@ import { getRandomInt } from "./utils";
 // IMAGE
 
 import { akashicDB } from "./AkashicDB";
+import { getItemFromAsync } from "./AsyncStorage";
 
 import N_Cnt from "./src/akashic/akashic_normal.png";
 import A_Cnt from "./src/akashic/akashic_advance.png";
@@ -26,6 +35,7 @@ function Akashic() {
     advance: 0,
     hidden: 0,
   };
+  let savedListTemp = [];
 
   const [list, setList] = useState([
     //   IMG, Rank
@@ -39,7 +49,34 @@ function Akashic() {
   const [modalImage, setModalImage] = useState(null);
   const [modalState, setModalState] = useState(false);
   const [modalState2, setModalState2] = useState(false);
-  let savedListTemp = [];
+
+  const [sound, setSound] = useState();
+  const [soundOption, setSoundOption] = useState(false);
+
+  async function init() {
+    const opt = await getItemFromAsync("akashic");
+    setSoundOption(opt);
+  }
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require("./src/sound/brooch.mp3")
+    );
+    setSound(sound);
+
+    await sound.playAsync();
+  }
+
+  React.useEffect(() => {
+    init();
+
+    return sound
+      ? () => {
+          console.log("unloading");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   function getNormalAkashic() {
     let rank = 1;
@@ -157,6 +194,10 @@ function Akashic() {
     setSavedList(savedListTemp);
     setList(akashic_list);
     setCount(defaultCount);
+
+    if (soundOption) {
+      playSound();
+    }
   }
 
   return (
@@ -190,17 +231,43 @@ function Akashic() {
         <TouchableOpacity
           activeOpacity={0.8}
           style={AkashicStyles.button}
-          onPress={() => {
-            defaultCount = {
-              normal: 0,
-              advance: 0,
-              hidden: 0,
-            };
-            setCount(defaultCount);
-            setList([]);
-            setSavedList([]);
-            setMode("gacha");
-            setIsPossible(true);
+          onPress={async () => {
+            const AsyncAlert = async () =>
+              new Promise((resolve) => {
+                Alert.alert(
+                  null,
+                  "초기화시 획득한 아카식과 사용한 전송기 수가 초기화됩니다.\n정말 초기화 하시겠습니까?",
+                  [
+                    {
+                      text: "아니요",
+                      onPress: () => {
+                        resolve("YES");
+                      },
+                      style: "cancel",
+                    },
+                    {
+                      text: "네",
+                      onPress: () => {
+                        defaultCount = {
+                          normal: 0,
+                          advance: 0,
+                          hidden: 0,
+                        };
+                        setCount(defaultCount);
+                        setList([]);
+                        setSavedList([]);
+                        setMode("gacha");
+                        setIsPossible(true);
+
+                        resolve("YES");
+                      },
+                    },
+                  ],
+                  { cancelable: false }
+                );
+              });
+
+            await AsyncAlert();
           }}
         >
           <Text style={{ fontWeight: "bold" }}>초기화</Text>

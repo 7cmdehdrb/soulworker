@@ -1,7 +1,7 @@
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
-import { defaultState } from "./state";
+import { defaultState } from "./ConverterState";
 
 export const Option = (props) => {
   const { id, option, value, disable, lock, mode, setState, setTemp } = props;
